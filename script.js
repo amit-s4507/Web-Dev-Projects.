@@ -27,7 +27,7 @@ if(playGame) {
 
 function validateGuess(guess) {
   if(isNaN(guess)){
-    alert('Please Enter avalid Number')
+    alert('Please Enter a valid Number')
   }
   else if( guess < 1 || guess >100){
     alert('Please Enter a valid number between 1 and 100')
@@ -72,10 +72,31 @@ function displayMessage(message) {
 }
 
 function endGame() {
-
+    userInput.value = ''
+    userInput.setAttribute('disabled','');
+    p.classList.add('button')
+    p.innerHTML = `<h2 id = "newGame"> Start New Game </h2>`;
+    startOver.appendChild(p)
+    playGame = false;
+    newGame()
 }
 
 function newGame() {
  
+    const newGameButton = document.querySelector('#newGame')
+    newGameButton.addEventListener('click',function(e){
+
+        randomNumber = parseInt(Math.random() * 100 + 1);
+        prevGuess = [];
+        numGuess = 1;
+        guessSlot.innerHTML = ''
+        remaining.innerHTML = `${11 - numGuess}`;
+        userInput.removeAttribute('disabled')
+        startOver.removeChild(p);
+
+        playGame = true;
+
+    })
+
  
 }
